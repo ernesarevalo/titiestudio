@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Preguntas y Respuestas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      .question {
+        margin-bottom: 20px;
+      }
+
+      .answer {
+        display: none;
+        margin-bottom: 10px;
+      }
+
+      .question-text,
+      .answer-text {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Preguntas y Respuestas</h1>
+
+    <div>
+      <button id="nextButton">Sig Pregunta</button>
+      <button id="showAnswerButton">Mostrar Respuesta</button>
+    </div>
+
+    <div>
+      <button id="randomButton">Pregunta Azar</button>
+      <button id="showAllButton">Mostrar Todas</button>
+    </div>
+
+    <div>
+      <button id="resetButton">Resetear</button>
+    </div>
+
+    <div class="question" id="questionContainer">
+      <p class="question-text" id="questionText"></p>
+      <p class="answer-text answer" id="answerText"></p>
+    </div>
+
+    <script>
+      // Array de preguntas y respuestas
+      var questions = [
+        {
+          question:
+            "1) ¿Cómo se ejecutan las partidas de gastos en el Presupuesto Nacional?",
+          answer:
+            "Es un proceso secuencial de 5 etapas:<br>● Crédito inicial.<br>● Crédito vigente.<br>● Compromiso.<br>● Devengado.<br>● Pagado.",
+        },
+        {
+          question:
+            "2) ¿Cuáles son los sistemas que integran la Administración Financiera del Estado y sus organismos rectores?",
+          answer:
+            "● Oficina nacional de presupuesto.<br>● Contaduría general de la nación.<br>● Tesorería general de la nación.<br>● Oficina nacional de crédito público.<br>● Sindicatura general de la nación.<br>● Auditoría general de la nación.",
+        },
+        {
+          question: "3) Ámbito de aplicación de la ley 24.156",
+          answer:
+            "El artículo 8 indica que se aplica a:<br>● Organización administrativa centralizada (poder ejecutivo, ministros, jefe de gabinete).<br>● Organización descentralizada (AFIP).<br>● Organización e Instituciones de seguridad social (ANSES, AFJP, IAG).<br>● Empresas del estado o con participación estatal mayoritaria (AYSA, Aerolíneas argentinas, YPF).<br>● Universidades nacionales.<br>● Fondos fiduciarios y financiados por el sector público.",
+        },
+        {
+          question: "4) ¿Qué es la deuda exigible/flotante?",
+          answer:
+            "Todas las órdenes de pago emitidas y pendientes del pago al 31/12.",
+        },
+        {
+          question:
+            "5) ¿Cómo es el proceso de formulación presupuestaria? ¿Quiénes intervienen?",
+          answer:
+            "Se determinan globalmente los recursos públicos en base a un pronóstico económico. Intervienen:<br>● La secretaria de política económica.<br>● El INDEC.<br><br>Cada organismo sabe cuánto se gasta mediante el SAF y hay 3 hipótesis de gasto:<br>● Mínima: hacer lo mínimo indispensable.<br>● Media: gastos promedio de 5 a 10 años.<br>● Máxima: si hace todo, ¿cuánto necesita?<br><br>Esta información se envía a la ONP para tomar la decisión de cómo congeniar recursos con gastos. Posteriormente se elabora el anteproyecto de ley de presupuestos (cuánto gastó, cuánto gasta y cuánto va a gastar el otro año), que luego se transforma en el proyecto de ley.",
+        },
+        {
+          question:
+            "6) ¿Cuál es el ámbito de aplicación del decreto 1023/2001?",
+          answer:
+            "● Administración centralizada.<br>● Organismos descentralizados.<br>● Instituciones de seguridad social.",
+        },
+        {
+          question:
+            "7) ¿Cómo está integrada la Sindicatura General de la Nación (SIGEN)?",
+          answer:
+            "Por un síndico general y dos síndicos adjuntos. Depende del poder ejecutivo nacional.",
+        },
+        {
+          question:
+            "8) ¿Cómo está integrada la Auditoria General de la Nación (AGN)?",
+          answer:
+            "Auditoría General de la Nación depende del Poder Legislativo. Está compuesta por:<br>● 7 auditores generales (el presidente, 3 de la oposición y 3 del oficialismo).<br>● Comisión mixta revisora de cuentas (compuesta por 6 diputados y 6 senadores).",
+        },
+        {
+          question: "9) Contratos incluidos en el Decreto 1023/2001",
+          answer:
+            "● Suministros.<br>● Permuta.<br>● Compraventa.<br>● Leasing (alquiler con opción a compra).<br>● Consultoría.<br>● Alquiler de bienes de dominio público y privado.<br>● Concesión de obras públicas y de servicios públicos.<br>● Licencias.",
+        },
+        {
+          question: "10) Categorías o clases de licitaciones o concursos",
+          answer:
+            "1. Según región:<br>● Nacionales: pueden presentarse quienes tengan sede principal de su negocio en el país o empresas extranjeras que tengan sucursal debidamente inscripta en el país.<br>● Internacionales: su operatoria principal con sede en el extranjero o empresas nacionales que tengan sucursal debidamente inscripta en el extranjero.<br><br>2. Según etapas:<br>● De etapa única: hay una única instancia de evaluación de las ofertas.<br>● De etapa múltiple: hay al menos 2 instancias de evaluación de las ofertas:<br>  ○ Técnica: requiere puntaje mínimo.<br>  ○ Económica: evaluación económica de las ofertas.<br><br>3. Según la cantidad de oferentes:<br>● Pública: dirigida a un número indeterminado de oferentes.<br>● Privada: dirigida a un número determinado de oferentes previamente inscriptos.",
+        },
+      ];
+
+      var questionIndex = 0;
+
+      function showNextQuestion() {
+        questionIndex = (questionIndex + 1) % questions.length;
+        var question = questions[questionIndex];
+
+        document.getElementById("questionText").textContent = question.question;
+        document.getElementById("answerText").textContent = "";
+        document.getElementById("answerText").style.display = "none";
+      }
+
+      function showRandomQuestion() {
+        questionIndex = Math.floor(Math.random() * questions.length);
+        var question = questions[questionIndex];
+
+        document.getElementById("questionText").textContent = question.question;
+        document.getElementById("answerText").textContent = "";
+        document.getElementById("answerText").style.display = "none";
+      }
+
+      function showAnswer() {
+        var question = questions[questionIndex];
+        var answerElement = document.getElementById("answerText");
+        answerElement.textContent = question.answer;
+        answerElement.style.display = "block";
+      }
+
+      function showAllAnswers() {
+        var container = document.getElementById("questionContainer");
+        container.innerHTML = "";
+
+        for (var i = 0; i < questions.length; i++) {
+          var question = questions[i];
+          var questionElement = document.createElement("div");
+          questionElement.className = "question";
+
+          var questionText = document.createElement("p");
+          questionText.className = "question-text";
+          questionText.textContent = i + 1 + ". " + question.question;
+
+          var answerText = document.createElement("p");
+          answerText.className = "answer-text answer";
+          answerText.textContent = question.answer;
+          answerText.style.display = "block";
+
+          questionElement.appendChild(questionText);
+          questionElement.appendChild(answerText);
+          container.appendChild(questionElement);
+        }
+      }
+
+      document
+        .getElementById("nextButton")
+        .addEventListener("click", showNextQuestion);
+      document
+        .getElementById("randomButton")
+        .addEventListener("click", showRandomQuestion);
+      document
+        .getElementById("showAnswerButton")
+        .addEventListener("click", showAnswer);
+      document
+        .getElementById("showAllButton")
+        .addEventListener("click", showAllAnswers);
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", function () {
+          location.reload();
+        });
+
+      showNextQuestion();
+    </script>
+  </body>
+</html>
