@@ -1,0 +1,51 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9; /* Fondo claro */
+  color: #333; /* Texto oscuro para buena legibilidad */
+  line-height: 1.6; /* Espaciado entre líneas */
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: #a8d8ea; /* Azul pastel */
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: #fff; /* Texto blanco en el nav */
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  color: #4a4e69; /* Color pastel para encabezados */
+}
+
+section {
+  margin: 20px;
+  padding: 15px;
+  background-color: #ffe5d4; /* Melocotón pastel */
+  border-radius: 8px; /* Esquinas redondeadas */
+}
+
+button {
+  background-color: #ffe5b4; /* Amarillo pastel */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #ffcc80; /* Amarillo más oscuro al pasar el ratón */
+}
+
+p {
+  margin: 10px 0; /* Espaciado entre párrafos */
+}

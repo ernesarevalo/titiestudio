@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Estudio</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="resumen1.html">Resumen 1</a>
+      <a href="resumen2.html">Resumen 2</a>
+      <a href="resumen3.html">Resumen 3</a>
+      <a href="resumen4.html">Resumen 4</a>
+      <a href="resumen5.html">Resumen 5</a>
+      <a href="resumen6.html">Resumen 6</a>
+      <a href="estudio.html">Estudio</a>
+    </nav>
+    <section>
+      <h2>Estudio</h2>
+
+      <h3>Resumen 1: Macroeconomía</h3>
+      <button onclick="cargarPregunta('resumen1')">Pregunta al azar</button>
+      <button onclick="mostrarRespuesta('resumen1')">Ver Respuesta</button>
+      <p id="pregunta-resumen1"></p>
+      <p id="respuesta-resumen1" style="display: none"></p>
+
+      <h3>Resumen 2: Indicadores Macroeconómicos</h3>
+      <button onclick="cargarPregunta('resumen2')">Pregunta al azar</button>
+      <button onclick="mostrarRespuesta('resumen2')">Ver Respuesta</button>
+      <p id="pregunta-resumen2"></p>
+      <p id="respuesta-resumen2" style="display: none"></p>
+
+      <h3>Resumen 3: Programa de la Asignatura</h3>
+      <button onclick="cargarPregunta('resumen3')">Pregunta al azar</button>
+      <button onclick="mostrarRespuesta('resumen3')">Ver Respuesta</button>
+      <p id="pregunta-resumen3"></p>
+      <p id="respuesta-resumen3" style="display: none"></p>
+
+      <h3>Resumen 4: Demanda Agregada</h3>
+      <button onclick="cargarPregunta('resumen4')">Pregunta al azar</button>
+      <button onclick="mostrarRespuesta('resumen4')">Ver Respuesta</button>
+      <p id="pregunta-resumen4"></p>
+      <p id="respuesta-resumen4" style="display: none"></p>
+
+      <h3>Resumen 5: Indicadores Macroeconómicos</h3>
+      <button onclick="cargarPregunta('resumen5')">Pregunta al azar</button>
+      <button onclick="mostrarRespuesta('resumen5')">Ver Respuesta</button>
+      <p id="pregunta-resumen5"></p>
+      <p id="respuesta-resumen5" style="display: none"></p>
+
+      <h3>Resumen 6: Economía Mochón y Becker</h3>
+      <button onclick="cargarPregunta('resumen6')">Pregunta al azar</button>
+      <button onclick="mostrarRespuesta('resumen6')">Ver Respuesta</button>
+      <p id="pregunta-resumen6"></p>
+      <p id="respuesta-resumen6" style="display: none"></p>
+    </section>
+
+    <script>
+      const preguntas = {
+        resumen1: [
+          {
+            pregunta:
+              "¿Cuál es la diferencia entre microeconomía y macroeconomía?",
+            respuesta:
+              "La microeconomía estudia la producción y precios de mercados individuales, mientras que la macroeconomía analiza la economía en su conjunto.",
+          },
+          {
+            pregunta: "¿Qué son las variables macroeconómicas?",
+            respuesta: "Variables flujo, stock y precio.",
+          },
+          {
+            pregunta: "¿Cuál es la función de producción en la economía?",
+            respuesta:
+              "La función de producción agrega las funciones de producción de las empresas.",
+          },
+          {
+            pregunta: "¿Qué objetivos busca alcanzar la macroeconomía?",
+            respuesta:
+              "Crecimiento del PIB, baja tasa de desempleo, estabilidad de precios.",
+          },
+          {
+            pregunta: "¿Qué es el PIB y cómo se mide?",
+            respuesta:
+              "El PIB mide el valor total de bienes y servicios finales.",
+          },
+          {
+            pregunta: "¿Qué es la tasa de desempleo?",
+            respuesta:
+              "Es el porcentaje de la población activa que está desempleada.",
+          },
+          {
+            pregunta: "¿Qué es la inflación y cómo se mide?",
+            respuesta: "La inflación es el aumento generalizado de precios.",
+          },
+          {
+            pregunta:
+              "¿Cuáles son los instrumentos de la política macroeconómica?",
+            respuesta: "Política monetaria y fiscal.",
+          },
+          {
+            pregunta: "¿Qué es la curva de demanda agregada?",
+            respuesta:
+              "Muestra la relación entre el nivel general de precios y el gasto total.",
+          },
+          {
+            pregunta: "¿Qué es la curva de oferta agregada?",
+            respuesta:
+              "Refleja los márgenes de beneficios y costos de producción.",
+          },
+          {
+            pregunta: "¿Qué es el equilibrio macroeconómico?",
+            respuesta:
+              "Es la combinación del PIB real y el nivel general de precios.",
+          },
+          {
+            pregunta: "¿Qué ocurre con las perturbaciones de oferta?",
+            respuesta:
+              "Cambios en costos de productividad que afectan la oferta.",
+          },
+        ],
+        resumen2: [
+          {
+            pregunta: "¿Cuál es la ecuación principal de la macroeconomía?",
+            respuesta: "PIB = C + I + G + (X - M).",
+          },
+          {
+            pregunta: "¿Qué representa el consumo (C)?",
+            respuesta: "El gasto total de los hogares en bienes y servicios.",
+          },
+          {
+            pregunta: "¿Qué incluye la inversión (I)?",
+            respuesta: "Gasto en bienes de capital y cambio en inventarios.",
+          },
+          {
+            pregunta: "¿Qué es el gasto público (G)?",
+            respuesta: "Gasto del gobierno en bienes y servicios.",
+          },
+          {
+            pregunta: "¿Qué son las exportaciones netas (X - M)?",
+            respuesta: "Diferencia entre exportaciones e importaciones.",
+          },
+          {
+            pregunta: "¿Qué es el empleo?",
+            respuesta:
+              "Personas que realizan actividades económicas remuneradas.",
+          },
+          {
+            pregunta: "¿Qué es el subempleo?",
+            respuesta: "Forma de empleo insuficiente.",
+          },
+          {
+            pregunta: "¿Qué es el sobreempleo?",
+            respuesta: "Trabajar más horas de las recomendadas.",
+          },
+          {
+            pregunta: "¿Qué es el desempleo?",
+            respuesta: "Situación donde se busca empleo y no se encuentra.",
+          },
+          {
+            pregunta: "¿Qué es la tasa de interés?",
+            respuesta: "Porcentaje que se paga por el uso del dinero.",
+          },
+          {
+            pregunta: "¿Cuáles son los tipos de tasa de interés?",
+            respuesta: "Nominal y real.",
+          },
+          {
+            pregunta: "¿Cómo afecta la tasa de interés al ahorro y al crédito?",
+            respuesta: "Altas incentivan el ahorro, bajas facilitan préstamos.",
+          },
+          {
+            pregunta: "¿Cuál es la diferencia entre pobreza e indigencia?",
+            respuesta: "Pobreza es falta de recursos, indigencia es extrema.",
+          },
+          {
+            pregunta: "¿Qué organismos internacionales son destacados?",
+            respuesta: "FMI, Banco Mundial, OMC, ONU, OCDE.",
+          },
+          {
+            pregunta:
+              "¿Cuál es la diferencia entre política fiscal y política monetaria?",
+            respuesta: "Fiscal es del gobierno, monetaria del banco central.",
+          },
+          {
+            pregunta: "¿Cuál es el objetivo de ambas políticas?",
+            respuesta: "Lograr estabilidad económica.",
+          },
+        ],
+        resumen3: [
+          {
+            pregunta: "¿Cuál es el objetivo principal de la asignatura?",
+            respuesta:
+              "Formar al estudiante en la comprensión del entorno económico.",
+          },
+          {
+            pregunta: "¿Cuáles son los objetivos generales de la materia?",
+            respuesta:
+              "Familiarizarse con terminología económica y analizar temas clave.",
+          },
+          {
+            pregunta: "¿Qué contenidos se estudian en cada unidad temática?",
+            respuesta:
+              "Incluyen macroeconomía, variables, renta nacional, etc.",
+          },
+          {
+            pregunta: "¿Cómo se abordará la materia en clase?",
+            respuesta: "Explicaciones teóricas, lectura y uso de artículos.",
+          },
+          {
+            pregunta: "¿Qué es el trabajo de campo?",
+            respuesta: "Informe individual sobre un tema del programa.",
+          },
+          {
+            pregunta: "¿Qué requisitos hay para aprobar la materia?",
+            respuesta: "75% de asistencia, parciales aprobados y examen final.",
+          },
+        ],
+        resumen4: [
+          {
+            pregunta: "¿Qué es la demanda agregada?",
+            respuesta:
+              "Total de bienes y servicios que están dispuestos a comprar.",
+          },
+          {
+            pregunta: "¿Cuáles son los componentes de la demanda agregada?",
+            respuesta:
+              "Consumo privado, inversión privada, gasto gubernamental, exportaciones netas.",
+          },
+          {
+            pregunta: "¿Qué factores influyen en el consumo privado?",
+            respuesta:
+              "Ingresos, riqueza, tasas de interés y expectativas económicas.",
+          },
+          {
+            pregunta: "¿Qué abarca la inversión privada?",
+            respuesta:
+              "Gasto en infraestructura, maquinarias, equipos y tecnología.",
+          },
+          {
+            pregunta: "¿Cuál es el propósito del gasto gubernamental?",
+            respuesta:
+              "Promover el bienestar social y brindar servicios públicos.",
+          },
+          {
+            pregunta: "¿Qué es la propensión marginal al consumo (PMC)?",
+            respuesta:
+              "Cambio en el consumo por cambio en el ingreso disponible.",
+          },
+          {
+            pregunta: "¿Cómo se calcula la PMC?",
+            respuesta:
+              "Dividiendo el cambio en el consumo por el cambio en el ingreso.",
+          },
+          {
+            pregunta: "¿Qué es el ahorro?",
+            respuesta:
+              "Parte del ingreso que no se destina al consumo inmediato.",
+          },
+          {
+            pregunta:
+              "¿Cómo se relacionan el consumo, la inversión y el gasto del estado con la demanda agregada?",
+            respuesta:
+              "Son componentes clave que determinan la demanda total en la economía.",
+          },
+          {
+            pregunta:
+              "¿Qué efecto tiene un aumento en el consumo y la inversión en la economía?",
+            respuesta:
+              "Genera un incremento en el PIB y puede llevar a un crecimiento económico.",
+          },
+        ],
+        resumen5: [
+          {
+            pregunta: "¿Cuál es la ecuación macroeconómica principal?",
+            respuesta: "PIB = C + I + G + (X - M).",
+          },
+          {
+            pregunta: "¿Qué representa el consumo (C)?",
+            respuesta: "El gasto total de los hogares en bienes y servicios.",
+          },
+          {
+            pregunta: "¿Qué incluye la inversión (I)?",
+            respuesta: "Gasto en bienes de capital y cambio en inventarios.",
+          },
+          {
+            pregunta: "¿Qué es el gasto público (G)?",
+            respuesta: "Gasto del gobierno en bienes y servicios.",
+          },
+          {
+            pregunta: "¿Qué son las exportaciones netas (X - M)?",
+            respuesta: "Diferencia entre exportaciones e importaciones.",
+          },
+          {
+            pregunta: "¿Qué es el empleo?",
+            respuesta:
+              "Personas que realizan actividades económicas remuneradas.",
+          },
+          {
+            pregunta: "¿Qué es el subempleo?",
+            respuesta: "Forma de empleo insuficiente.",
+          },
+          {
+            pregunta: "¿Qué es el sobreempleo?",
+            respuesta: "Trabajar más horas de las recomendadas.",
+          },
+          {
+            pregunta: "¿Qué es el desempleo?",
+            respuesta: "Situación donde se busca empleo y no se encuentra.",
+          },
+          {
+            pregunta: "¿Qué es la tasa de interés?",
+            respuesta: "Porcentaje que se paga por el uso del dinero.",
+          },
+          {
+            pregunta: "¿Cuáles son los tipos de tasa de interés?",
+            respuesta: "Nominal y real.",
+          },
+          {
+            pregunta: "¿Cómo afecta la tasa de interés al ahorro y al crédito?",
+            respuesta: "Altas incentivan el ahorro, bajas facilitan préstamos.",
+          },
+          {
+            pregunta: "¿Cuál es la diferencia entre pobreza e indigencia?",
+            respuesta: "Pobreza es falta de recursos, indigencia es extrema.",
+          },
+          {
+            pregunta: "¿Qué organismos internacionales son destacados?",
+            respuesta: "FMI, Banco Mundial, OMC, ONU, OCDE.",
+          },
+          {
+            pregunta:
+              "¿Cuál es la diferencia entre política fiscal y política monetaria?",
+            respuesta: "Fiscal es del gobierno, monetaria del banco central.",
+          },
+          {
+            pregunta: "¿Cuál es el objetivo de ambas políticas?",
+            respuesta: "Lograr estabilidad económica.",
+          },
+        ],
+        resumen6: [
+          {
+            pregunta:
+              "¿Qué diferencia hay entre economía positiva y normativa?",
+            respuesta:
+              "Positiva: analiza lo que es; normativa: lo que debería ser.",
+          },
+          {
+            pregunta: "¿Qué es una teoría económica?",
+            respuesta: "Explicación lógica del funcionamiento económico.",
+          },
+          {
+            pregunta: "¿Qué es la unidad de consumo?",
+            respuesta: "La familia que consume bienes y servicios.",
+          },
+          {
+            pregunta:
+              "¿Qué factores influyen en las decisiones del consumidor?",
+            respuesta:
+              "Ingresos, precio de bienes, utilidad, estructura de necesidades.",
+          },
+          {
+            pregunta: "¿Qué es una curva de indiferencia?",
+            respuesta: "Combinaciones de bienes que dan igual satisfacción.",
+          },
+          {
+            pregunta: "¿Qué indica la tasa marginal de sustitución?",
+            respuesta: "Cuánto de un bien se sacrifica por otro.",
+          },
+          {
+            pregunta: "¿Qué son las transferencias del Estado?",
+            respuesta: "Pagos sin contraprestación como jubilaciones.",
+          },
+          {
+            pregunta: "¿Qué principios deben cumplir los impuestos?",
+            respuesta: "Equidad, neutralidad, simplicidad.",
+          },
+          {
+            pregunta:
+              "¿Qué efecto tiene un impuesto sobre la oferta y demanda?",
+            respuesta: "Desplaza la curva de oferta hacia arriba.",
+          },
+          {
+            pregunta: "¿Qué es un mercado?",
+            respuesta: "Lugar donde interactúan oferta y demanda.",
+          },
+          {
+            pregunta: "¿Cómo se clasifican los mercados?",
+            respuesta: "Por bienes, localización, tiempo, organización.",
+          },
+          {
+            pregunta: "¿Qué estructuras de mercado existen?",
+            respuesta:
+              "Monopolio, oligopolio, competencia perfecta, monopsonio.",
+          },
+          {
+            pregunta: "¿Qué es la función de producción?",
+            respuesta: "Relación entre insumos y producto.",
+          },
+          {
+            pregunta: "¿Qué es eficiencia técnica y económica?",
+            respuesta: "Máxima producción y combinación más barata de insumos.",
+          },
+          {
+            pregunta: "¿Qué es el rendimiento de escala?",
+            respuesta: "Relación entre aumento de insumos y producto.",
+          },
+          {
+            pregunta: "¿Qué diferencia hay entre producción bruta y producto?",
+            respuesta:
+              "Producción bruta incluye insumos; producto solo bienes finales.",
+          },
+          {
+            pregunta: "¿Qué es el PIB?",
+            respuesta: "Valor total de bienes y servicios finales producidos.",
+          },
+          {
+            pregunta: "¿Qué es el Producto Nacional?",
+            respuesta: "PIB más ingresos del exterior menos pagos al exterior.",
+          },
+          {
+            pregunta: "¿Qué es la elasticidad-precio de la demanda?",
+            respuesta:
+              "Cuánto varía la cantidad demandada ante un cambio de precio.",
+          },
+          {
+            pregunta: "¿Qué tipos de elasticidad existen?",
+            respuesta: "Precio, ingreso, cruzada.",
+          },
+          {
+            pregunta: "¿Qué es elasticidad unitaria?",
+            respuesta:
+              "Cambio porcentual en cantidad demandada igual al cambio en precio.",
+          },
+          {
+            pregunta: "¿Qué estudia la microeconomía?",
+            respuesta: "Decisiones individuales y formación de precios.",
+          },
+          {
+            pregunta: "¿Qué estudia la macroeconomía?",
+            respuesta: "Funcionamiento global de la economía.",
+          },
+          {
+            pregunta: "¿Qué son las ventajas comparativas?",
+            respuesta: "Capacidad de producir bienes más eficientemente.",
+          },
+          {
+            pregunta: "¿Qué es un arancel?",
+            respuesta: "Impuesto sobre importaciones.",
+          },
+          {
+            pregunta: "¿Qué efectos tiene un arancel?",
+            respuesta: "Aumenta precios internos y reduce importaciones.",
+          },
+          {
+            pregunta: "¿Qué es distribución funcional del ingreso?",
+            respuesta: "Reparto entre trabajo, capital, etc.",
+          },
+          {
+            pregunta: "¿Qué instrumentos usa el Estado para redistribuir?",
+            respuesta: "Impuestos, transferencias, controles de precios.",
+          },
+          {
+            pregunta: "¿Qué funciones cumple el dinero?",
+            respuesta:
+              "Medio de intercambio, unidad de cuenta, reserva de valor.",
+          },
+          {
+            pregunta: "¿Qué tipos de dinero existen?",
+            respuesta: "Dinero mercancía, signo, giral.",
+          },
+          {
+            pregunta: "¿Qué es la función de consumo?",
+            respuesta: "Relación entre ingreso disponible y consumo planeado.",
+          },
+          {
+            pregunta: "¿Qué es la propensión marginal a consumir (PMC)?",
+            respuesta: "Proporción del ingreso adicional destinada al consumo.",
+          },
+          {
+            pregunta: "¿Qué es la propensión marginal a ahorrar (PMS)?",
+            respuesta: "Parte del ingreso adicional que se ahorra.",
+          },
+        ],
+      };
+
+      function cargarPregunta(resumen) {
+        const preguntasResumen = preguntas[resumen];
+        const randomIndex = Math.floor(Math.random() * preguntasResumen.length);
+        const selected = preguntasResumen[randomIndex];
+        const preguntaElement = document.getElementById(`pregunta-${resumen}`);
+        const respuestaElement = document.getElementById(
+          `respuesta-${resumen}`
+        );
+
+        preguntaElement.innerText = selected.pregunta;
+        respuestaElement.innerText = selected.respuesta;
+        respuestaElement.style.display = "none"; // Oculta la respuesta al cargar una nueva pregunta
+      }
+
+      function mostrarRespuesta(resumen) {
+        const respuestaElement = document.getElementById(
+          `respuesta-${resumen}`
+        );
+        respuestaElement.style.display = "block";
+      }
+    </script>
+  </body>
+</html>
